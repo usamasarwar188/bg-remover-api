@@ -171,6 +171,8 @@ def remove_background():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
+    # For local development only - in production, gunicorn will serve the app
     port = int(os.environ.get('PORT', 5001))
     debug = os.environ.get('FLASK_ENV') != 'production'
-    app.run(host="0.0.0.0", debug=debug, port=port) 
+    app.run(host="0.0.0.0", debug=debug, port=port)
+    print(f"Flask app running on port {port}") 
