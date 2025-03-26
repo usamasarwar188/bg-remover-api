@@ -98,7 +98,15 @@ Removes the background and optionally applies a new background.
 
 ## Deployment
 
-### Render
+### Render Free Tier Considerations
+
+The application is designed to work within Render's free tier limitations:
+
+1. **In-Memory Processing**: All image processing is done in memory, no disk storage is required.
+2. **Stateless Operation**: The app doesn't store uploaded or processed images, making it suitable for ephemeral environments.
+3. **Automatic Sleep**: The free tier on Render will spin down after inactivity. The first request after inactivity may take longer due to cold start.
+
+### Render Deployment Steps
 
 1. Create a new Web Service on Render
 2. Connect your GitHub repository
@@ -109,6 +117,7 @@ Removes the background and optionally applies a new background.
    - **Start Command**: `gunicorn app:app -c gunicorn_config.py`
 5. Add environment variables:
    - `FLASK_ENV`: `production`
+   - `PORT`: `10000` (Render sets this automatically, but include it for clarity)
    - `ALLOWED_ORIGINS`: Comma-separated list of frontend domain(s)
 
 ### Heroku

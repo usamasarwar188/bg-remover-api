@@ -21,9 +21,11 @@ else:
     # In development, allow all origins
     CORS(app)
 
-# Define upload folder - use environment variable or default
-UPLOAD_FOLDER = os.environ.get('UPLOAD_FOLDER', 'uploads')
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)  # Ensure upload folder exists
+# Create uploads directory only in development
+# In production, we'll process files in memory
+if os.environ.get('FLASK_ENV') != 'production':
+    UPLOAD_FOLDER = os.environ.get('UPLOAD_FOLDER', 'uploads')
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)  # Ensure upload folder exists
 
 @app.route('/')
 def index():
