@@ -1,0 +1,8 @@
+flask==3.0.2
+flask-cors==4.0.0
+rembg==2.0.65
+pillow==10.2.0
+numpy==1.26.4
+gunicorn==21.2.0
+gevent==23.9.1
+python-dotenv==1.0.1 
