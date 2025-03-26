@@ -3,12 +3,11 @@ import os
 import io
 from PIL import Image
 import numpy as np
+from rembg import remove
+REMBG_AVAILABLE = True
+print("rembg module successfully imported")
 
-# try:
-#     from rembg import remove
-#     REMBG_AVAILABLE = True
-# except ImportError:
-#     REMBG_AVAILABLE = False
+
 
 app = Flask(__name__)
 
@@ -64,5 +63,8 @@ def remove_background():
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
-    app.run(host="0.0.0.0", port=port, debug=True)
-    print(f"Flask app running on port {port}") 
+    app.run(host="0.0.0.0", port=port, debug=False)
+else:
+    # This is crucial for gunicorn to work properly
+    port = int(os.environ.get('PORT', 5000))
+    print(f"Flask app initialized, ready to serve on port {port}") 
