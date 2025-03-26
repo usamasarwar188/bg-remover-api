@@ -3,7 +3,7 @@ import os
 import io
 from PIL import Image
 import numpy as np
-from rembg import remove
+# from rembg import remove
 REMBG_AVAILABLE = True
 print("rembg module successfully imported")
 
