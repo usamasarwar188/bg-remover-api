@@ -1,8 +1,12 @@
 """Gunicorn config for the Flask application."""
 import multiprocessing
+import os
 
-# Bind to 0.0.0.0:$PORT
-bind = "0.0.0.0:$PORT"
+# Get the PORT environment variable that Render provides
+port = os.environ.get("PORT", "10000")
+
+# Bind to 0.0.0.0:PORT
+bind = f"0.0.0.0:{port}"
 
 # Use one worker per core
 workers = multiprocessing.cpu_count()
